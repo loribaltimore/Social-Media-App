@@ -1,0 +1,27 @@
+<div class="container profile-photos-popup row visually-hidden border">
+    <h3 class="col">Photos</h3>
+        <div class="row profile-photo-holder">
+            <%for (let image of activeUser.img){%>
+                <div class="col thumbnail-div">
+                    <div class="container position-relative">
+                        <form action="http://localhost:3000/user/<%=activeUser.id%>/photos?_method=PUT" method="POST" class="profile-picture-form" id="<%=(activeUser.img.indexOf(image)+200)%>">
+                            <input type="radio" class="position-absolute profile-picture-input" name="profile_picture" value="<%=image.filename%>::<%=image.path%>" id="profile-picture" hidden>
+                        <button type="submit" id="<%=(activeUser.img.indexOf(image)+100)%>" hidden></button>
+                        <img src="<%=image.path%>" class="profile-photo-thumbnails" id="<%=activeUser.img.indexOf(image)%>">
+                        </form>
+                    </div> 
+            </div>
+            <%}%> 
+        </div>
+</div>
+
+<!-- ////select photo to be profile picture -->
+<!-- /////edit user info -->
+<!-- ///select cover photo -->
+<!-- <div class="container position-relative visually-hidden">
+    <form action="http://localhost:3000/user//photos?_method=DELETE" method="POST" class="photo-thumbnails-form">
+        <input type="checkbox" class="position-absolute photo-thumbnails-input" name="deleteImg[]"  hidden>
+    <img src="" class="friend-photo-thumbnails">
+    <button type="submit" hidden></button>
+    </form>
+</div>  -->

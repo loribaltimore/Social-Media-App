@@ -1,0 +1,113 @@
+<div class="container visually-hidden row edit-profile-popup position-absolute mt-5">
+    <div class="container border-bottom">
+    <div class=" text-center mt-2 row">
+        <h4 class="border-bottom col-10">Edit Profile</h4>
+        <button type="button" class="btn-close edit-profile-close" aria-label="Close"></button>
+    </div>
+    <div class="container row mt-3 mb-2">
+        <div class="row">
+            <span class="col">
+                <h4>Profile Picture</h4>
+            </span>
+            <span class="col">
+                <%if (activeUser.img.length){%>
+                    <button class="btn profile-photos-button">Select Photo</button>
+                <%} else {%>
+                    <button class="btn profile-photos-button">Add Photos</button>
+                    <%}%>
+            </span>
+        </div>
+        <div>
+            <div class="edit-profile-picture">
+                <%if (activeUser.profile_pictures && activeUser.profile_pictures.profile.length){%>
+                    <img src="<%=activeUser.profile_pictures.profile.path%>" class="edit-profile-picture" alt="" >
+                <%}%>
+            </div>
+        </div>
+            <%-include('profilePhotosPopup')%>
+    </div>
+    </div>
+    <div class="container mt-3 mb-2">
+        
+        <div class="container row ">
+            <div class="row">
+                <span class="col">
+                    <h4>Cover Photo</h4>
+                </span>
+                <span class="col">
+                    <%if (activeUser.img.length){%>
+                        <button class="btn upload-cover-button">Select Cover</button>
+                    <%} else {%>
+                        <button class="btn upload-cover-button">Add Photos</button>
+                        <%}%>
+                </span>
+            </div>
+            <div>
+                <div class="edit-cover-picture">
+                    <%if (activeUser.profile_pictures && activeUser.profile_pictures.cover.length){%>
+                        <img src="<%=activeUser.profile_pictures.cover.path%>" class="edit-cover-picture" alt="" >
+                    <%}%>
+                </div>
+            </div>
+                <%-include('coverPhotosPopup')%>
+        </div>
+        </div>
+    <div class="container mt-3 mb-5 border-top">
+        
+        <div class="container row user-all-photos-div ">
+            <div class="row">
+                <span class="col">
+                    <h4>All Photos</h4>
+                </span>
+                <%if (activeUser.img.length){%>
+                    <span class="col">
+                        <button class="btn add-photo-button">Add Photos</button>
+                        <button class="btn delete-photo-button">Remove Photos</button>
+                 
+                </span>
+                <%}%>
+            </div>
+            <div class="p-2 border">
+                <%if (activeUser.img.length){%>
+                    <div class="all-photos-holder row">
+                        <%for (let image of activeUser.img){%>
+                            <div class="col">
+                            <input type="checkbox" value="<%=image.filename%>" class="position-absolute photo-delete-checkbox" name="IMG<%=activeUser.img.indexOf(image)%>" id="<%=image.filename%>" hidden>
+                                <img src="<%=image.path%>" alt="" class="user-all-photos-thumbnail" id="<%=image.filename%>">
+                            </div>
+                                <%}%>
+                    </div>
+                    <button class="btn btn-danger photo-delete-btn" hidden>DELETE</button>
+                <%} else {%>
+                    <form action="http://localhost:3000/user/<%=activeUser.id%>/photos?_method=PATCH" method="POST" enctype="multipart/form-data">
+                        <input type="file" class="user-add-photos-form" name="img" multiple>
+                        <button type="submit">Add</button>
+                    </form>
+                    <%}%>
+            </div>
+            <div class="mt-3">
+                <form action="http://localhost:3000/user/<%=activeUser.id%>/photos?_method=PATCH" method="POST" id="add-photos-form" enctype="multipart/form-data" hidden>
+                    <input type="file" class="user-add-photos-form" name="img" multiple>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
+        </div>
+   <div class="container mt-3 mb-2">
+    <span class="col">
+        <h4>Bio</h4>
+    </span>
+<div class="row">
+        <form action="http://localhost:3000/user/<%=activeUser.id%>?_method=PUT" method="POST" class="bio-form row">
+                    <input type="text" name="first_name" class="bio-input mt-2" id="" placeholder="<%=activeUser.bio.first_name%>">
+                    <input type="text" name="last_name" class="bio-input mt-2" id="" placeholder="<%=activeUser.bio.last_name%>">
+                    <input type="text" name="location" class="bio-input mt-2" id="" placeholder="<%=activeUser.bio.location%>">
+                    <input type="text" name="from" class="bio-input mt-2" id="" placeholder="<%=activeUser.bio.from%>">
+                    <input type="text" name="relationship_status" class="bio-input mt-2" id="" placeholder="<%=activeUser.bio.relationship_status%>">
+                    <input type="text" name="blurb" class="bio-input mt-2" id="" placeholder="<%=activeUser.bio.blurb%>">
+                <button type="submit" class="mt-2">Update Bio</button>
+        </form>
+    </div>
+    </div>
+    </div>
+  

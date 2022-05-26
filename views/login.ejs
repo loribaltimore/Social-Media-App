@@ -1,0 +1,17 @@
+<%-layout('./partials/boilerplate')%>
+<div class="container row mt-3 login-div">
+<form action="http://localhost:3000/user/login" method="POST">
+    <div class="input-group mb-3">
+        <span class="input-group-text">@</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" name="username" aria-describedby="Enter Username">
+      </div>
+      
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="password" name="password" aria-describedby="Enter Password">
+      </div>
+<button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+
+</div>
+

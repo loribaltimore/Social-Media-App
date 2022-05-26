@@ -1,0 +1,23 @@
+<%-layout('./partials/boilerplate')%>
+<script>
+let userId = '<%=activeUser.id%>';
+</script>
+<div class="container row user-home">
+<div class="col-3">shit</div>
+<%-include('./partials/postPopup')%>
+<div class="col-6 position-relative misc-post-div">
+    <div class="container new-post">
+        <form action="http://localhost:3000/user" method="POST" class="input-group mt-3" enctype="multipart/form-data">
+            <div class="input-group mb-3 mt-5">
+                <input type="text" class="form-control post-input" placeholder="What's on your mind <%=activeUser.bio.first_name%>?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add Photo</button>
+              </div>
+        </form>
+        <%-include('./partials/friendPosts')%>
+    </div>
+</div>
+<div class="col-3">
+    <%-include('./partials/notificationPopup')%>
+</div>
+</div>
+

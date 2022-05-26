@@ -1,0 +1,17 @@
+<%-layout('./partials/boilerPlate.ejs')%>
+<div class="container delete-confirm">
+    <h3>Are You Sure You Want to Delete Your Profile?</h3>
+    <p>All content, including: 
+        <ol>
+            <li>All Photos</li>
+            <li>All Memories</li>
+            <li>All Posts</li>
+            <li>All Comments</li>
+        </ol>
+        will by delete.
+    </p>
+    <form action="http://localhost:3000/user/<%=activeUser.id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete it all</button>
+    </form>
+<button>No, I've changed my mind..</button>
+</div>

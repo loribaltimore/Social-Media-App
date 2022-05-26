@@ -1,0 +1,36 @@
+<%layout('./partials/boilerplate')%>
+<div class="container row mt-4" style="margin-left: 3.5rem;">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <%if (allFriends !== undefined){%>
+            <%for (friend of allFriends){%>
+                <%if (friend.id !== activeUser.id){%>
+                <a href="/user/<%=activeUser.id%>/friends/<%=friend.friend_id%>" class="text-decoration-none"> 
+                    <div class="border search-result mt-1" >
+                     <div class="search-result-text ">
+                     <h5 class="mb-0"><%=friend.bio.first_name%> <%=friend.bio.last_name%></h5>
+                     <ul class="list-unstyled search-result-bio ">
+                     <li ><%=friend.bio.location%></li>
+                     <li><%=friend.bio.from%></li>
+                     <li> <%=friend.bio.relationship_status%></li>
+                     <li><%=friend.bio.member_since.getFullYear()%></li>
+                     <li><%=friend.bio.blurb%></li>
+                 </ul>
+             </div>
+                 </div>
+             </a>
+             <%}%>
+                 <%}%>
+        <%} else {%>
+       
+                <div class="border search-result mt-1 text-center">
+                    <h1 class="mt-4">Start Adding Friends!</h1>
+                </div>
+            <%}%>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+///working on customizing user settings
+////delete and add Photos
+///edit user bio info

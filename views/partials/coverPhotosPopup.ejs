@@ -1,0 +1,16 @@
+<div class="container cover-photo-popup row visually-hidden border">
+    <h3 class="col">Photos</h3>
+        <div class="row cover-photo-holder">
+            <%for (let image of activeUser.img){%>
+                <div class="col thumbnail-div">
+                    <div class="container position-relative">
+                        <form action="http://localhost:3000/user/<%=activeUser.id%>/photos?_method=PUT" method="POST" class="cover-picture-form" id="<%=(activeUser.img.indexOf(image)+200)%>">
+                            <input type="radio" class="position-absolute cover-picture-input" name="cover_picture" value="<%=image.filename%>::<%=image.path%>" id="pcover-picture" hidden>
+                        <button type="submit" id="<%=(activeUser.img.indexOf(image)+100)%>" hidden></button>
+                        <img src="<%=image.path%>" class="cover-photo-thumbnails" id="<%=activeUser.img.indexOf(image)%>">
+                        </form>
+                    </div> 
+            </div>
+            <%}%> 
+        </div>
+</div>

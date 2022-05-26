@@ -1,0 +1,151 @@
+<script>
+    let activeUser_id = '<%=activeUser.id%>';
+</script>
+<%if (newestPosts){%>
+<%for (let i = 0; i < newestPosts.length; i++){%>
+    <div class="container post-div mb-2 row" id="<%=newestPosts[i].id%>">
+        <div class="container row">
+            <div class="mt-2 post-author row col">
+                <div class="col-4 post-photo">
+                  <%if (allAuthors[i].profile_picture){%>
+                    <img src="<%=allAuthors[i].profile_picture%>" class="post-photo"  alt="">
+                  <%}%>
+                </div>
+                <div class="col row">
+                <a href="/user/<%=activeUser.id%>/friends/<%=allAuthors[i].friendID%>" class="text-decoration-none post-author-names"><h6><%=allAuthors[i].name%></h6></a>
+                <footer style="font-size: 12px;"><%=newestPosts[i].postDate.toString().slice(4, 15)%></footer>
+              </div>
+            </div>
+            <div class=" col">
+             <% if (newestPosts[i].author.toString() === activeUser.id.toString()){%>
+                <span class="post-action-button">
+                  <button class="btn"><span><h5>&#8230;</h5></span></button>
+                </span>
+                <%-include('postAction')%>
+             <%}%>
+            </div>
+            </div>
+            <div>
+                <p><%=newestPosts[i].text%></p>
+            </div>
+        <div class="post-carousel mb-2">
+            <%if (newestPosts[i].img.length){%>
+                <div id="<%=i%>" class="carousel slide post-img" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active post-img ">
+                    <img src="<%=newestPosts[i].img[0].path%>" class="d-block w-100" alt="">
+                  </div>
+                  <%for (let j = 1; j < newestPosts[i].img.length; j++){%>
+                    <div class="carousel-item post-img">
+                        <img src="<%=newestPosts[i].img[j].path%>" class="d-block w-100" alt="...">
+                      </div>
+                  <%}%>
+                <button class="carousel-control-prev" type="button" data-bs-target="#<%=i%>" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#<%=i%>" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              </div>
+            <%}%>
+        </div>
+        <div class="border-bottom"></div>
+        <div class="row border-bottom">
+            <div class="col">
+                <form action="http://localhost:3000/user/<%=activeUser.id%>/like" class="like-form" method="POST">
+                    <input type="text" value="<%=newestPosts[i].id%>" name="post_id" id="like-input" class="like-input"  hidden>
+                    <%if (newestPosts[i].likes.indexOf(activeUser.id) !== -1){%>
+                        <button class="btn like-btn liked" type="submit">Liked</button><span class="badge bg-primary like-count"><%=newestPosts[i].likes.length%></span>
+                    <%} else {%>
+                        <button class="btn like-btn" type="submit">Like</button>
+                        <%}%>
+                </form>
+            </div>
+            <div class="col"><button class="btn">Comment</button></div>
+            <div class="col"><button class="btn">Share</button></div>
+        </div>
+        <div class="container row mt-2">
+          <div class="col post-photo">
+            <%if (activeUser.profile_pictures){%>
+              <img src="<%=activeUser.profile_pictures.profile.path%>" class=" col post-photo" alt="">
+            <%}%>
+          </div>
+          <div class="col ">
+            <form action="http://localhost:3000/user/<%=activeUser.id%>/post/<%=newestPosts[i].id%>/comment" class="comment" id="<%=newestPosts[i].id%>" method="POST">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control comment-input" name="body" placeholder="Write a comment..." aria-label="Comment" aria-describedby="basic-addon1">
+                <input type="text" name="author" value="<%=activeUser.id%>" hidden >
+                <button type="submit" class="comment-submit">Send</button>
+              </div>
+            </form>
+            
+          </div>
+          <%if (commentsByLikes[i].length){%>
+          <div class="row container mb-3">
+            <div class="col-12 post-photo">
+              <%if (commentAuthors[i].profile_picture){%>
+                <img src="<%=commentAuthors[i].profile_picture%>" class="post-photo"  alt="">
+              <%}%>
+            </div>
+
+              <div class="comment-format col" id="<%=commentsByLikes[i][0].id%>">
+                  <span class="row">
+                   <%=commentAuthors[i].name%>
+                  </span>
+                <%=commentsByLikes[i][0].body%>
+           </div>
+            
+           <div class=" col comment-like position-relative">
+            <form action="http://localhost:3000/user/<%=activeUser.id%>/comment/<%=commentsByLikes[i][0].id%>/like" method="POST">
+            </form>
+            <button class="btn position-absolute comment-like-button"><h3>&#8679</h3></button>
+         </div>
+          </div>
+          <%}%>
+        </div>
+     
+
+        <%if (commentsByLikes[i].length > 1){%>
+          <button class="btn view-comments-btn">View all Comments</button>  
+          <div class="container all-comments mb-3 row visually-hidden" id="<%=i%>">
+          <%for (let j = 1; j <= commentsByLikes[i].length -1; j++){%>
+            <div class="container row">
+            <div class="col-12 comment-photo">
+              <%if (commentAuthors[i].profile_picture){%>
+                <img src="<%=commentAuthors[i].profile_picture%>" class="post-photo"  alt="">
+              <%}%>
+            </div>
+            <div class="container col comment-format mt-2 position-relative row" id="<%=commentsByLikes[i][j].id%>">
+              <span class="col">
+                <%=commentAuthors[j].name%>
+               </span>
+               <%if (activeUser.comments.indexOf(commentsByLikes[i][j].id) !== -1){%>
+                <div class="col" id="<%=commentsByLikes[i][j].post_id%>">
+                  <span >
+                  <button class="btn comment-action-button">&#8230;</button>
+                </span>
+                  <%-include('commentAction')%>
+                  </div>
+              <%}%>
+               <div class="">
+                <%=commentsByLikes[i][j].body%>
+               </div>
+            </div>
+            <% if (activeUser.comments.indexOf(commentsByLikes[i][j].id) === -1){%>
+              <div class=" col comment-like position-relative">
+                <form action="http://localhost:3000/user/<%=activeUser.id%>/comment/<%=commentsByLikes[i][j].id%>/like" method="POST">
+                </form>
+                <button class="btn position-absolute comment-like-button"><h3>&#8679</h3></button>
+             </div>
+            <%}%>
+          </div>
+       
+        <%}%>
+      </div>
+        <%}%>
+    </div>
+<%}%>
+<%}%>

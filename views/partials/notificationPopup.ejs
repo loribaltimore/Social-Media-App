@@ -1,0 +1,37 @@
+<script>
+    
+</script>
+<div class="row notification-popup visually-hidden">
+    <%if (notifications){%>
+  <% for (let notification of notifications){%>
+<div class="row notification-div mb-3">
+    <div class="col-12 comment-photo"></div>
+    <div class="container col comment-format notification mt-2" id="<%=notification.id%>">
+      <span class="row">
+        <%=notification.fromName%>
+       </span>
+       <div class="container row">
+        <%=notification.message%>
+            <span class="col-6">
+                <%if (notification.category === 'User'){%>
+                    <form action="http://localhost:3000/user/<%=activeUser.id%>/friends/<%=notification.fromId%>?_method=PUT" class="approve-request-form" method="POST" id="<%=notification.fromId%>">
+                        <button class="btn">Accept</button>
+                    </form>
+                <%} else if (notification.type === 'Comment'){%>
+                    <a href="#" class="text-decoration-none">See Comment</a>
+                    <%}else {%>
+                        <a href="/user<%=activeUser.id%>" class="text-decoration-none">See Post</a>
+                        <%}%>
+                    </span>
+            <span class="col-6">
+                <form action="http://localhost:3000/user/<%=activeUser.id%>/friends/<%=notification.fromId%>/dismiss?_method=DELETE" class="deny-request-form" method="POST" id="<%=notification.fromId%>">
+                    <button type="submit" class="btn">Dismiss</button>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>
+<%}%>
+<%}%>
+  </div>
+ 

@@ -1,0 +1,8 @@
+<div class="container row">
+  <%if (activeUser){%>
+    <form class="d-flex mt-3" action="http://localhost:3000/user/<%=activeUser.id%>/search" method="GET">
+      <input class="form-control" type="search" placeholder="Search" name="nav_search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <%}%>
+  </div>

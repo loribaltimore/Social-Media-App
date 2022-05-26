@@ -1,0 +1,338 @@
+body{
+    background-color: lightgray;
+    margin: 0%;
+    padding: 0%;
+}
+.user-home{
+    margin: 0%;
+    padding: 0%;
+}
+.new-post{
+    background-color: whitesmoke;
+    height: 7rem;
+    z-index: 0;
+}
+.post-popup{
+    background-color: whitesmoke;
+    width: 35rem;
+    margin-left: 26.5%;
+    z-index: 1;
+}
+.post-input-close{
+margin-left: 3.75rem;
+}
+.post-badge{
+margin-left: .75rem;
+}
+.post-author{
+    margin-left: 1rem;
+    padding-bottom: 1rem;
+}
+.post-photo{
+    width: 2.75rem;
+    height: 2.75rem;
+    max-height: 2.75rem;
+    max-width: 2.75rem;
+    background-color: grey;
+    border-radius: 50%;
+}
+.post-body{
+    height: 10rem;
+    width: 95%;
+}
+.post-text{
+    background-color: whitesmoke;
+    height: 5rem;
+    width: 95%;
+}
+.misc-post-div{
+z-index: 0;
+}
+.nav-buttons{
+    margin-left: 53%;
+}
+.navbar{
+    max-height: 3rem;
+    background-color: whitesmoke;
+}
+.search-result{
+    background-color: whitesmoke;
+    height: 7rem;
+    z-index: 0;
+    color: black;
+}
+.search-result-bio{
+    font-size: 12px;
+    margin-top: 0%;
+}
+.search-result-text{
+    margin-left: 6rem ;
+}
+.login-div{
+    max-width: 40rem;
+    margin-left: 23rem;
+}
+.post-img{
+    max-width: 20rem;
+    max-height: 12rem;
+}
+.post-div{
+   background-color: whitesmoke;
+}
+.liked{
+    color: blue;
+}
+.cover-photo{
+    margin-left: 2.5rem ;
+    width: 75rem;
+    height: 30rem;
+    z-index: 0;
+}
+.profile-picture-backdrop{
+    border-radius: 50%;
+    background-color: white;
+    width: 12rem;
+    height: 12rem;
+    z-index: 1;
+    left : 5rem;
+    bottom: 5rem;
+}
+.profile-picture{
+    border-radius: 50%;
+    background-color: whitesmoke;
+    width: 12rem;
+    height: 12rem;
+    padding: .25rem;
+    z-index: 1;
+}
+.friend-page-topper{
+    background-color: whitesmoke;
+}
+.topper-bio{
+    left: 20rem;
+    bottom: 3rem;
+}
+.comment-input{
+    width: 40rem;
+}
+.comment-like{
+    max-width: 3rem;
+}
+.comment-like-button{
+right: .3;
+color: blue
+}
+.comment-format{
+    max-width: 40rem;
+    background-color: lightgray;
+    margin-left: 2rem;
+}
+.comment-photo{
+    width: 1.5rem;
+    height: 1.5rem;
+    max-height: 1.5rem;
+    max-width: 1.5rem;
+    background-color: grey;
+    border-radius: 50%;
+}
+.profile-topper-buttons{
+max-width: 7rem;
+color: grey;
+font-weight: 800;
+}
+.sub-buttons{
+    left: 20rem;
+}
+.profile-about-cont{
+    margin-right: .75rem;
+
+    position: sticky;
+    height: 40rem;
+    top: 0rem;
+}
+.profile-post-cont{
+    margin-left: .75rem;
+    height: 60rem;
+}
+.show-page-divs-cont{
+    margin-left: 4%;
+    margin-top: 1rem;
+    margin-bottom: 5%;
+    height: 500rem;
+
+}
+.profile-post-div{
+    background-color: whitesmoke;
+    width: inherit;
+    margin-bottom: 2%;
+}
+.friend-page-post-body{
+    min-width: 25rem;
+    max-width: 30rem;
+}
+.friend-page-post-carousel{
+    min-width: 25rem;
+    max-width: 30rem; 
+    padding-bottom: 2%;
+}
+.carousel-item{
+    width: inherit;
+    height: 15rem;
+   
+}
+.post-content{
+    margin-left: 3rem;
+}
+.like-share-comment{
+    margin: 0%
+}
+.friend-all-photos{
+    width: 26rem;
+    background-color: whitesmoke;
+ 
+}
+.friend-photo-thumbnails{
+width: 7rem;
+height: 7rem;
+margin: 0%;
+padding: 1%;
+}
+.thumbnail-div{
+    max-width: 7rem;
+    max-height: 7rem;
+    padding: 0%;
+    margin: 0%;
+}
+.photo-holder{
+    margin-left: 1.25%;
+}
+.delete-confirm{
+    background-color: whitesmoke;
+    width: 40rem;
+    margin-top: 2rem;
+}
+.notification-popup{
+    width: 20rem;
+    max-height: 50rem;
+    background-color: whitesmoke;
+}
+.notification-div{
+width: inherit;
+height: 5rem;
+font-size: 14px;
+margin-top: 2rem;
+}
+.comment-action-button{
+    position: relative;
+    left: 10rem
+}
+.comment-action-div{
+    width: 10rem;
+    height: 2rem;
+    background-color: whitesmoke;
+    z-index: 1;
+    position: absolute;
+    left: 20rem
+}
+.comment-edit-popup{
+    width: 10rem;
+    height: 5rem;
+    background-color: whitesmoke;
+    z-index: 7;
+    position: absolute;
+}
+.post-action-button{
+right: 4rem;
+position: absolute;
+
+}
+.post-action-div{
+    width: 10rem;
+    height: 2rem;
+    background-color: whitesmoke;
+    z-index: 1;
+
+    left: 20rem
+}
+
+.edit-post-input{
+    width: 10rem;
+    height: 5rem;
+    background-color: whitesmoke;
+    z-index: 7;
+    position: absolute;
+};
+.post-author-names{
+    color: black;
+}
+a{
+    color: inherit;
+}
+.bio{
+    background-color: whitesmoke;
+    width: 26rem;
+}
+.edit-profile-popup{
+    background-color: whitesmoke;
+    width: 35rem;
+    margin-left: 26.5%;
+    z-index: 1;
+}
+.edit-profile-picture{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: green;
+    position: relative;
+    left: 7.5rem
+}
+.profile-photos-button{
+    position: relative;
+    left: 10rem;
+    color: blue
+}
+.user-all-photos{
+    width: 26rem;
+    background-color: whitesmoke;
+}
+.upload-cover-button{
+    position: relative;
+    left: 10rem;
+    color: blue
+}
+.edit-cover-picture{
+    width: 20rem;
+    height: 10rem;
+    background: green;
+    position: relative;
+    left: 2.5rem
+}
+.profile-photo-thumbnails{
+    width: 7rem;
+    height: 7rem;
+    margin: 0%;
+    padding: 1%;
+}
+.cover-photo-thumbnails{
+    width: 7rem;
+    height: 7rem;
+    margin: 0%;
+    padding: 1%;
+}
+.all-photos-holder{
+    width: 26rem;
+  
+}
+.user-all-photos-thumbnail{
+width: 7rem;
+height: 7rem;
+margin: 0%;
+padding: 1%;
+}
+.delete-photo-button{
+    color: red;
+}
+.add-photo-button{
+    color: blue;
+}
+

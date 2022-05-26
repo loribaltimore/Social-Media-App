@@ -1,0 +1,42 @@
+<script>
+    let activeUser_id = '<%=activeUser.id%>';
+    let friend_id = '<%=friend.friend_id%>'
+</script>
+<div>
+<div class="container position-relative friend-page-topper">
+    <div class="container border-bottom">
+        <img src="<%=friend.profile_pictures.cover.path%>" alt="" class="cover-photo">
+    <div class="profile-picture-backdrop position-relative">
+        <img src="<%=friend.profile_pictures.profile.path%>" class="profile-picture" alt="">
+    </div>
+    <div class="position-absolute topper-bio ">
+        <h2><%=friend.bio.first_name%> <%=friend.bio.last_name%></h2>
+        <p><%=friend.friends.length%> followers &#183 <%=friend.posts.length%> posts</p>
+        <p><%=friend.bio.blurb%></p>
+    </div>
+</div>
+<div class="contianer row">
+    <div class="container topper-buttons-div col row mt-1">
+    <a href="#" class="col text-decoration-none profile-topper-buttons text-center">Posts</a>
+    <a href="/user/<%=activeUser.id%>/friends/<%=friend.friend_id%>/about" class="col text-decoration-none profile-topper-buttons text-center">About</a>
+    <a href="#" class="col text-decoration-none profile-topper-buttons text-center">Mentions</a>
+    <a href="#" class="col text-decoration-none profile-topper-buttons text-center">Followers</a>
+    <a href="#" class="col text-decoration-none profile-topper-buttons text-center">Photos</a>
+    <a href="#" class="col text-decoration-none profile-topper-buttons text-center">More</a>
+</div>
+    <div class="col sub-buttons position-relative">
+      <%if (activeUser.friends.indexOf(friend.friend_id) === -1){%>
+      <form action="http://localhost:3000/user/<%=activeUser.id%>/friend/<%=friend.friend_id%>" method="POST" class="add-friend-form">
+        <button type="submit" class="btn btn-primary add-friend-button">Follow</button>
+      </form>
+      <%} else {%>
+        <form action="http://localhost:3000/user/<%=activeUser.id%>/friend/<%=friend.friend_id%>?_method=DELETE" method="POST" class="delete-friend-form">
+        <button type="submit" class="btn btn-primary delete-friend-button">Unfollow</button>
+      </form>
+        <%}%>
+    </div>
+    <div class="col sub-buttons position-relative">
+        <button class="btn btn-secondary">Sign-Up</button>
+      </div>
+</div>
+</div>

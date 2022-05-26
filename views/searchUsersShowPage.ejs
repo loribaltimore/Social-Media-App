@@ -1,0 +1,21 @@
+<%-layout('./partials/boilerplate')%>
+<div class="container row mt-4" style="margin-left: 3.5rem;">
+    <div class="col-3"></div>
+    <div class="col-6">
+    <%for (result of searchResults){%>
+        <a href="/user/<%=activeUser.id%>/friends/<%=result.friend_id%>"><div class="border search-result mt-1" >
+            <div class="search-result-text">
+            <h5 class="mb-0"><%=result.bio.first_name%> <%=result.bio.last_name%></h5>
+            <ul class="list-unstyled search-result-bio">
+            <li><%=result.bio.location%></li>
+            <li><%=result.bio.from%></li>
+            <li> <%=result.bio.relationship_status%></li>
+            <li><%=result.bio.member_since.getFullYear()%></li>
+            <li><%=result.bio.blurb%></li>
+        </ul>
+    </div>
+        </div></a>
+        <%}%>
+    </div>
+    <div class="col-3"></div>
+</div>

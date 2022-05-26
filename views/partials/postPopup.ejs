@@ -1,0 +1,24 @@
+<div class="container visually-hidden row post-popup position-absolute">
+<div class="container">
+<div class=" text-center mt-2 row">
+    <h4 class="border-bottom col-10">Create Post</h4>
+    <button type="button" class="btn-close post-input-close" aria-label="Close"></button>
+</div>
+<div class="mt-2 post-author row">
+    <div class="col-4 post-photo">
+    </div>
+    <div class="col-4">
+    <h6><%=activeUser.bio.first_name%> <%=activeUser.bio.last_name%> </h6>
+    <span class="badge bg-secondary post-badge">Friends<span>&#x25BE</span></span>
+</div>
+</div>
+</div>
+<div class="container post-body">
+    <form action="http://localhost:3000/user/<%=activeUser.id%>/post" method="POST" enctype="multipart/form-data">
+<input type="text" class="border-0 border border-light post-text" name="text" placeholder="What's on your mind <%=activeUser.bio.first_name%> <%=activeUser.bio.last_name%>?"> 
+<input type="file" name="img" placeholder="jixx">
+<input type="text" name="author" value="<%=activeUser.id%>" hidden> 
+</div>
+<button class="btn btn-primary mb-3" type="submit">Post</button>
+</form>
+</div>

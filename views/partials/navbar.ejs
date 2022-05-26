@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <%if (activeUser){%>
+        <a class="navbar-brand" href="/user/<%=activeUser.id%>">FaceBook</a>
+      <%} else{%>
+        <a class="navbar-brand" href="/user">FaceBook</a>
+        <%}%>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <%-include('navSearchDropdown')%>
+      <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto ">
+          <%if (activeUser){%>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               <% if (activeUser.notifications.length){%>
+                <span class="position-absolute top-100 start-0 translate-middle badge rounded-pill bg-success">
+                  <%=activeUser.notifications.length%>
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+                <%}%>
+                  <%=activeUser.bio.first_name%>
+              </a>
+              <%}%>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item notification-button" href="#">Notifications</a>
+                </li>
+                <%if (activeUser){%>
+                <li><a class="dropdown-item" href="/user/<%=activeUser.id%>/delete">Delete Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item edit-profile-button">Edit Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <%}%>
+                <li>
+                  <form action="http://localhost:3000/user/logout" method="POST">
+                    <button class="dropdown-item">Logout</button></li>
+                  </form>
+              </ul>
+            </li>
+            <%if (activeUser){%>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/user/<%=activeUser.id%>/friends">Friends</a>
+              </li>
+            <%}%>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/user/login">Login</a>
+          </li>
+          <%if (!activeUser){%>
+            <li class="nav-item">
+              <a class="nav-link" style="color: blue;" href="/user/signup">SignUp</a>
+            </li>
+          <%}%>
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+  <%if (activeUser){%>
+    <%-include('editProfilePopup')%>
+  <%}%>

@@ -1,0 +1,129 @@
+<%layout('./partials/boilerplate')%>
+<%-include('./partials/profilePageTop')%>
+<div class="container row show-page-divs-cont">
+    <div class="col profile-about-cont">
+      <div class="container row bio mb-3 mt-3">
+        <div class="row mb-2 border-bottom">
+        <span class="mt-2"><h5>Biography</h5></span>  
+        <span><%=friend.bio.blurb%></span>
+      </div>
+        <div class="mb-2"><h6>Lives in <%=friend.bio.location%></h6></div>
+        <div class="mb-2"><h6>From <%=friend.bio.from%></h6></div>
+        <div class="mb-2"><h6><%=friend.bio.relationship_status%></h6></div>
+        <div class="mb-2"><h6>Member Since <%=friend.bio.member_since.toString().slice(3,15)%></h6></div>
+      </div>
+        <div class="container friend-all-photos row">
+            <h3 class="col">Photos</h3>
+            <a href="" class="col text-decoration-none mt-2"><h6 >See All Photos</h6></a>
+                <div class="row photo-holder">
+                    <%for (let image of friend.img){%>
+                        <div class="col thumbnail-div">
+                            <img src="<%=image.path%>" class="friend-photo-thumbnails"    alt="">
+                    </div>
+                    <%}%> 
+                </div>
+
+        </div>
+
+    </div>
+
+    <div class="col profile-post-cont">
+        <%for (let post of posts){%>
+            <div class="profile-post-div mt-2">
+                <div class=" container post-author row pt-2 ">
+                    <div class="col-4 post-photo">
+                    </div>
+                    <div class="col-4">
+                    <h6><%=friend.bio.first_name%> <%=friend.bio.last_name%> </h6>
+                    <p><%=post.postDate.toString().slice(0, 15)%></p>
+                </div>
+            </div>
+                <div class="post-content">
+                    <p class="friend-page-post-body"><%=post.text%></p>
+                    <div class="friend-page-post-carousel mb-2">
+                        <%if (post.img.length){%>
+                            <div id="<%=posts.indexOf(post)%>" class="carousel slide carousel-img" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active carousel-img ">
+                                <img src="<%=post.img[0].path%>" class="d-block w-100 carousel-img  " alt="">
+                              </div>
+                              <%for (let j = 1; j < post.img.length; j++){%>
+                                <div class="carousel-item carousel-img">
+                                    <img src="<%=post.img[j].path%>" class="d-block w-100 carousel-img " alt="...">
+                                  </div>
+                              <%}%>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#<%=posts.indexOf(post)%>" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#<%=posts.indexOf(post)%>" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>
+                          </div>
+                        <%}%>
+                    </div>
+                </div>
+                <div class="border-top border-bottom mb-2 row like-share-comment">
+                    <div class="col text-center">Like</div>
+                    <div class="col text-center">Comment</div>
+                    <div class="col text-center">Share</div>
+                </div>
+                <div class="container row mt-2">
+                    <div class="col post-photo">
+                      
+                    </div>
+                    <div class="col ">
+                      <form action="http://localhost:3000/user/<%=activeUser.id%>/post/<%=post.id%>/comment" class="comment" id="<%=post.id%>" method="POST">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control comment-input" name="body" placeholder="Write a comment..." aria-label="Comment" aria-describedby="basic-addon1">
+                          <input type="text" name="author" value="<%=activeUser.id%>" hidden >
+                          <button type="submit" class="comment-submit">Send</button>
+                        </div>
+                      </form>
+                      
+                    </div>
+                    <%if (post.comments.length){%>
+                    <div class="row container mb-3">
+                      <div class="col-12 post-photo">
+                      </div>
+                          <div class="comment-format col" id="<%=post.comments[0].id%>">
+                          <span class="row">
+                            <%=commentAuthors[0]%>
+                           </span>
+                          <%=post.comments[0].body%>
+                     </div>
+                     <div class=" col comment-like position-relative">
+                      <form action="http://localhost:3000/user/<%=activeUser.id%>/comment/<%=post.comments[0].id%>/like" method="POST">
+                      </form>
+                      <button class="btn position-absolute comment-like-button"><h3>&#8679</h3></button>
+                   </div>
+                    </div>
+                    <%}%>
+                  </div>
+                  <%if (post.comments.length > 1){%>
+                    <button class="btn view-comments-btn">View all Comments</button>  
+                    <div class="container all-comments mb-3 row visually-hidden" id="<%=posts.indexOf(post)%>">
+                    <%for (let j = 1; j <= post.comments.length -1; j++){%>
+                      <div class="container row">
+                      <div class="col-12 comment-photo"></div>
+                      <div class="container col comment-format mt-2" id="<%=post.comments[j].id%>">
+                        <span class="row">
+                          <%=commentAuthors[j]%>
+                         </span>
+                        <%=post.comments[j].body%>
+                      </div>
+                       <div class=" col comment-like position-relative">
+                        <form action="http://localhost:3000/user/<%=activeUser.id%>/comment/<%=post.comments[j].id%>/like" method="POST">
+                        </form>
+                        <button class="btn position-absolute comment-like-button"><h3>&#8679</h3></button>
+                     </div>
+                    </div>
+                  <%}%>
+                </div>
+                  <%}%>
+    </div>
+    <%}%>
+</div>
+</div>

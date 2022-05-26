@@ -1,0 +1,72 @@
+<%-layout('./partials/boilerplate')%>
+<div class="container row mt-3 login-div">
+    <form action="http://localhost:3000/user/signup" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="email" name="email" aria-label="Username" aria-describedby="Enter Username" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="Username" name="username" aria-label="Username" aria-describedby="Enter Username" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="password" name="password" aria-describedby="Enter Password" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" placeholder="Select Photos" name="img" aria-describedby="Upload Photos" multiple required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="First Name" name="first_name" aria-describedby="Enter First Name" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Last Name" name="last_name" aria-describedby="Enter Last Name" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Location" name="location" aria-describedby="Enter Location" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Where are you from?" name="from" aria-describedby="Enter Where You're From" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Relationship Status" name="relationship_status" aria-describedby="Enter Relationship Status" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Tell us something about you.." name="blurb" aria-describedby="Enter a blurb about yourself" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+    
+    
+    </div>
